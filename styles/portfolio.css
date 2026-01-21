@@ -86,7 +86,10 @@ button {
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease,
+  transition:
+    transform 0.15s ease-out,
+    width 0.2s ease,
+    height 0.2s ease,
     background 0.2s ease;
   z-index: 9999;
   mix-blend-mode: normal; /* makes it visible on both light/dark backgrounds */
@@ -512,6 +515,15 @@ button {
     --fontsize-20: clamp(0.625rem, 0.625rem + 0.3472vw, 0.75rem); /* 14-12 */
     --fontsize-18: clamp(0.625rem, 0.625rem + 0.3472vw, 0.75rem); /* 12-10 */
   }
+  .drawer-main {
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 3rem;
+  }
+  .drawer-image img {
+    width: 80%;
+  }
   /* Burger icon */
   .burger {
     width: 24px;
@@ -556,6 +568,9 @@ button {
   .footer a {
     transition: all 0.5s ease;
     font-size: 25px;
+  }
+  .footer-2 {
+    font-size: 3vw;
   }
   .mail-icon {
     width: 25px;

@@ -80,7 +80,10 @@ button {
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease,
+  transition:
+    transform 0.15s ease-out,
+    width 0.2s ease,
+    height 0.2s ease,
     background 0.2s ease;
   z-index: 9999;
   mix-blend-mode: normal; /* makes it visible on both light/dark backgrounds */
@@ -637,6 +640,15 @@ button {
     height: 16px;
     transition: all 0.5s ease;
   }
+  .drawer-main {
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 3rem;
+  }
+  .drawer-image img {
+    width: 80%;
+  }
   .hero {
     margin-top: 30px;
     gap: 1rem;
@@ -687,6 +699,9 @@ button {
   .footer a {
     transition: all 0.5s ease;
     font-size: 25px;
+  }
+  .footer-2 {
+    font-size: 3vw;
   }
   .mail-icon {
     width: 25px;

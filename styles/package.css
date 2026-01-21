@@ -42,7 +42,10 @@ button {
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease,
+  transition:
+    transform 0.15s ease-out,
+    width 0.2s ease,
+    height 0.2s ease,
     background 0.2s ease;
   z-index: 9999;
   mix-blend-mode: normal; /* makes it visible on both light/dark backgrounds */
@@ -255,7 +258,9 @@ button {
   display: none;
   gap: 4.5rem;
   text-align: left;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 .package.active {
   display: flex;
@@ -607,6 +612,15 @@ img {
     --fontsize-45: clamp(1.875rem, 1.875rem + 0.8681vw, 2.1875rem); /* 35-30 */
     --fontsize-30: clamp(1rem, 1rem + 0.6944vw, 1.25rem); /* 20-16 */
   }
+  .drawer-main {
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 3rem;
+  }
+  .drawer-image img {
+    width: 80%;
+  }
   /* Burger icon */
   .burger {
     width: 24px;
@@ -646,6 +660,9 @@ img {
   .footer a {
     transition: all 0.5s ease;
     font-size: 25px;
+  }
+  .footer-2 {
+    font-size: 3vw;
   }
   .mail-icon {
     width: 25px;

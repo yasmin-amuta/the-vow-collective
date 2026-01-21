@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         stagger: 0.2,
         ease: "power3.out",
         scrollTrigger: { trigger: ".drawer-links a", start: "top center" },
-      }
+      },
     );
     const burger = document.getElementById("burger");
     const drawer = document.getElementById("drawer");
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
           duration: 0.5,
           ease: "power3.out",
         },
-        "<"
+        "<",
       );
 
     var tradTl = gsap.timeline({
