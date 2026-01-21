@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--Style sheet-->
+    <link rel="stylesheet" href="styles/contact.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Font styles-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Antic+Didone&family=Are+You+Serious&family=Beau+Rivage&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <title>Contact</title>
+
+    <!--lenis-->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis"></script>
+  </head>
+  <body>
+    <!--Navbar-->
+
+    <nav class="navbar">
+      <div class="logo">
+        <h1><span>C</span>ontact</h1>
+      </div>
+
+      <div class="burger" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <!-- Navbar dropdown now inside -->
+      <div class="drawer" id="drawer">
+        <div class="drawer-main">
+          <div class="drawer-links">
+            <a class="hover-target" href="portfolio.html">Portfolio.</a>
+            <a class="hover-target" href="experience.html">Experience.</a>
+            <a class="hover-target" href="package.html">Packages.</a>
+            <a class="hover-target" href="contact.html">Contact.</a>
+          </div>
+          <div class="drawer-image">
+            <img src="images/ -60.jpg" alt="" />
+          </div>
+        </div>
+        <p>capturing the start of forever</p>
+      </div>
+    </nav>
+
+    <!--Hero heading-->
+    <h1 class="heading">Get in Touch</h1>
+    <p class="sub-heading">to bring your vision to life</p>
+
+    <!--Contact Form section-->
+    <section class="check">
+      <div class="check-info">
+        <p>
+          Your journey starts here. Please fill out the form below with as much
+          detail as possible, and we will be in touch within 24 hours to check
+          our availability and schedule a complimentary consultation. For other
+          enquiries, please email me at (thevowcollective@gmail.com). Based in
+          Morroco, available for destination weddings worldwide
+        </p>
+        <div class="container">
+          <!--Contact form-->
+          <form action="action_page.php">
+            <input
+              type="text"
+              id="fname"
+              name="firstname"
+              placeholder="Full Name"
+            />
+
+            <input type="text" placeholder="Email" name="email" required />
+
+            <input
+              type="text"
+              id="date"
+              name="date"
+              placeholder="Wedding Date"
+            />
+
+            <input
+              type="text"
+              id="location"
+              name="location"
+              placeholder="Location"
+            />
+
+            <input
+              type="text"
+              id="about"
+              name="about"
+              placeholder="How did you hear about us?"
+            />
+
+            <textarea
+              id="subject"
+              name="subject"
+              placeholder="Anything you'd like to add?"
+              style="height: 100px"
+            ></textarea>
+
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      </div>
+      <!--Contact Image-->
+      <div class="image">
+        <img src="images/Image 23-09-2025 at 14.57 (1).jpeg" alt="" />
+      </div>
+    </section>
+
+    <!--Breadcrumb-->
+    <a href="main.html" class="breadcrumb hover-target"
+      ><span style="font-size: 20px">&#8598;</span> Back to Home</a
+    >
+
+    <div class="custom-cursor"></div>
+    <!--Javascript Link-->
+    <script src="javascript/gsap.min.js"></script>
+    <script src="javascript/ScrollTrigger.min.js"></script>
+    <script src="javascript/TextPlugin.min.js"></script>
+    <script src="javascript/SplitText.min.js"></script>
+    <script src="javascript/contact.js"></script>
+  </body>
+</html>

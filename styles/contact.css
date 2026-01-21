@@ -1,0 +1,433 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fffefa;
+  padding-top: 60px;
+  overscroll-behavior: none;
+  cursor: none !important;
+}
+/* Hide system cursor */
+a,
+button {
+  cursor: none !important;
+}
+
+/*Font Style */
+.antic-didone-regular {
+  font-family: "Antic Didone", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.are-you-serious-regular {
+  font-family: "Are You Serious", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.beau-rivage-regular {
+  font-family: "Beau Rivage", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.afacad {
+  font-family: "Afacad", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+:root {
+  --primary-bgcolor: #fffefa;
+  --tertiary-color: black;
+  --primary-color: white;
+  --hover-color: #f39c12;
+  --red-color: #5c0909;
+  --antic-font: "Antic Didone", serif;
+  --serious-font: "Are You Serious", cursive;
+  --beau-font: "Beau Rivage", cursive;
+  --afacad-font: "Afacad", sans-serif;
+  --fontsize-18: clamp(1rem, 0.6768rem + 0.5051vw, 1.125rem);
+  --fontsize-20: clamp(1.125rem, 0.8018rem + 0.5051vw, 1.25rem);
+  --fontsize-50: clamp(3rem, 2.6768rem + 0.5051vw, 3.125rem); /* 50-48 */
+  --fontsize-30: clamp(1.75rem, 1.4268rem + 0.5051vw, 1.875rem); /* 30-26 */
+}
+
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--tertiary-color);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hover-color);
+}
+/* Custom cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000;
+  background: var(--red-color);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease-out, width 0.5s ease, height 0.5s ease,
+    background 0.2s ease;
+  z-index: 9999;
+  mix-blend-mode: normal; /* makes it visible on both light/dark backgrounds */
+}
+
+/* Hover state for clickable items */
+.custom-cursor.hover {
+  width: 40px;
+  height: 40px;
+  background: var(--hover-color);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  position: fixed;
+  top: 5px;
+  left: 0;
+  z-index: 10;
+  background: transparent;
+}
+
+.logo {
+  font-size: var(--fontsize-20);
+  font-weight: bold;
+  padding-top: 20px;
+}
+.logo h1 {
+  color: var(--tertiary-color);
+  font-family: var(--antic-font);
+  font-weight: 400;
+}
+.logo span {
+  font-family: var(--beau-font);
+  font-weight: 400;
+}
+
+/* Burger icon */
+.burger {
+  width: 30px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  z-index: 30;
+}
+
+.burger div {
+  width: 100%;
+  height: 4px;
+  background: black;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Drawer (slides from top) */
+.drawer {
+  position: absolute; /* now relative to navbar */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* full-screen overlay */
+  background-color: #fffefa;
+  padding: 40px 5%;
+  display: none;
+  transition: all 0.4s ease-in-out;
+  z-index: 20;
+}
+.drawer-main {
+  margin-top: 10vh;
+  margin-left: 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.drawer-image img {
+  width: clamp(100px, 25vw, 300px);
+}
+.drawer.open {
+  display: block;
+  pointer-events: auto; /* slides just below navbar */
+}
+
+.drawer-links a {
+  text-decoration: none;
+  color: var(--tertiary-color);
+  font-size: var(--fontsize-30);
+  transition: color 0.3s ease;
+  font-family: var(--afacad-font);
+  font-weight: 400;
+  opacity: 1;
+  width: fit-content;
+  transition: all 0.4s ease-in-out;
+}
+.drawer-links a:hover {
+  color: var(--hover-color);
+  text-decoration: underline;
+}
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.drawer p {
+  text-align: center;
+  font-size: var(--fontsize-20);
+  font-family: var(--beau-font);
+  font-weight: 400;
+  margin-top: 5%;
+  color: var(--hover-color);
+}
+
+/* Animate burger into "X" */
+.burger.open div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+.burger.open div:nth-child(2) {
+  opacity: 0;
+}
+.burger.open div:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/*Hero heading */
+.heading {
+  margin-top: 30px;
+  font-family: var(--beau-font);
+  font-weight: 400;
+  font-size: var(--fontsize-50);
+  padding-left: 12%;
+}
+.sub-heading {
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-30);
+  padding-left: 20%;
+  margin-top: -15px;
+}
+
+/*Contact form section */
+.check {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem 8.12rem;
+  gap: 6.9rem;
+  height: auto;
+}
+
+.check-info {
+  flex: 1;
+}
+.check-info p {
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-18);
+}
+/*Contact form */
+input[type="text"],
+textarea {
+  width: 100%; /* Full width */
+  padding: 0.75rem; /* Some padding */
+  border: 1px solid var(--tertiary-color); /* Gray border */
+  border-radius: 6px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 5px; /* Bottom margin */
+  resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* Style the submit button with a specific background color etc */
+input[type="submit"] {
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.8rem 1.9rem;
+  font-size: var(--fontsize-18);
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+}
+input[type="submit"]:hover {
+  color: var(--hover-color);
+}
+.image {
+  display: flex;
+  justify-content: center;
+}
+/*Contact image */
+.image img {
+  max-width: 33vw;
+}
+/*Breadcrumb */
+.breadcrumb {
+  color: var(--tertiary-color);
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-20);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 60px;
+  margin-left: 40px;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 100px;
+}
+.breadcrumb:hover {
+  color: var(--hover-color);
+}
+/* media query 1280 */
+@media (max-width: 1280px) {
+  /*Contact form section */
+  .check {
+    padding: 1.25rem 4rem;
+    gap: 4rem;
+    transition: all 0.5s ease;
+  }
+  /*Contact form */
+  input[type="text"],
+  textarea {
+    padding: 0.6rem; /* Some padding */
+  }
+}
+@media (max-width: 1024px) {
+  :root {
+    --fontsize-20: clamp(1rem, 0.623rem + 0.7843vw, 1.125rem);
+    --fontsize-18: clamp(0.875rem, 0.498rem + 0.7843vw, 1rem);
+    --fontsize-50: clamp(2.75rem, 1.9961rem + 1.5686vw, 3rem); /* 48-44 */
+    --fontsize-30: clamp(1.5rem, 1.123rem + 0.7843vw, 1.625rem); /* 26-24 */
+  }
+  /* Burger icon */
+  .burger {
+    width: 28px;
+    height: 20px;
+  }
+  /*Contact form section */
+  .check {
+    padding: 1.25rem 3rem;
+    gap: 3rem;
+    transition: all 0.5s ease;
+  }
+  /*Contact form */
+  input[type="text"],
+  textarea {
+    padding: 0.5rem; /* Some padding */
+    font-size: 14px;
+    transition: all 0.5s ease;
+  }
+  /* Style the submit button with a specific background color etc */
+  input[type="submit"] {
+    padding: 0.7rem 1.9rem;
+    transition: all 0.5s ease;
+  }
+}
+/* media query 768 */
+@media (max-width: 768px) {
+  :root {
+    --fontsize-20: clamp(0.875rem, 0.4974rem + 1.0471vw, 1rem);
+    --fontsize-50: clamp(2.25rem, 0.75rem + 4.1667vw, 2.75rem); /* 44-36 */
+    --fontsize-30: clamp(1.375rem, 0.9974rem + 1.0471vw, 1.5rem); /* 24-22 */
+  }
+  /* Burger icon */
+  .burger {
+    width: 26px;
+    height: 18px;
+    transition: all 0.5s ease;
+  }
+  /*Contact form section */
+  .check {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.25rem 5rem;
+    gap: 3rem;
+    transition: all 0.5s ease;
+  }
+  /*Contact form */
+  input[type="text"],
+  textarea {
+    padding: 0.6rem; /* Some padding */
+    font-size: 14px;
+    transition: all 0.5s ease;
+  }
+  /* Style the submit button with a specific background color etc */
+  input[type="submit"] {
+    padding: 0.8rem 1.9rem;
+    transition: all 0.5s ease;
+  }
+  /*Contact image */
+  .image img {
+    max-width: 55vw;
+  }
+}
+/* media query 576 */
+@media (max-width: 576px) {
+  :root {
+    --fontsize-50: clamp(2rem, 1.4758rem + 2.1505vw, 2.25rem); /* 36-32 */
+    --fontsize-20: clamp(0.625rem, 0.625rem + 0.3472vw, 0.75rem); /* 14-12 */
+    --fontsize-18: clamp(0.625rem, 0.625rem + 0.3472vw, 0.75rem); /* 12-10 */
+    --fontsize-30: clamp(1.125rem, 1.125rem + 0.6944vw, 1.375rem); /* 22-18 */
+  }
+  /* Burger icon */
+  .burger {
+    width: 24px;
+    height: 16px;
+    transition: all 0.5s ease;
+  }
+
+  /*Hero heading */
+  .heading {
+    margin-top: 30px;
+    padding-left: 15%;
+  }
+  .sub-heading {
+    margin-top: -15px;
+    padding-left: 23%;
+  }
+  /*Contact form section */
+  .check {
+    padding: 1.25rem 2rem;
+    transition: all 0.5s ease;
+  }
+  /*Contact form */
+  input[type="text"],
+  textarea {
+    padding: 0.5rem; /* Some padding */
+    font-size: 12px;
+    transition: all 0.5s ease;
+  }
+}

@@ -1,0 +1,842 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fffefa;
+  padding-top: 60px;
+  overscroll-behavior: none;
+  cursor: none !important;
+}
+/* Hide system cursor */
+a,
+button {
+  cursor: none !important;
+}
+
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--tertiary-color);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hover-color);
+}
+/* Custom cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--red-color);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease,
+    background 0.2s ease;
+  z-index: 9999;
+  mix-blend-mode: normal; /* makes it visible on both light/dark backgrounds */
+}
+
+/* Hover state for clickable items */
+.custom-cursor.hover {
+  width: 30px;
+  height: 30px;
+  background: var(--hover-color);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/*Font styles */
+.antic-didone-regular {
+  font-family: "Antic Didone", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.are-you-serious-regular {
+  font-family: "Are You Serious", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.beau-rivage-regular {
+  font-family: "Beau Rivage", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.afacad {
+  font-family: "Afacad", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+:root {
+  --primary-bgcolor: #fffefa;
+  --tertiary-color: black;
+  --primary-color: white;
+  --hover-color: #f39c12;
+  --red-color: #5c0909;
+  --antic-font: "Antic Didone", serif;
+  --serious-font: "Are You Serious", cursive;
+  --beau-font: "Beau Rivage", cursive;
+  --afacad-font: "Afacad", sans-serif;
+  --fontsize-18: clamp(1rem, 0.6768rem + 0.5051vw, 1.125rem);
+  --fontsize-20: clamp(1.125rem, 0.8018rem + 0.5051vw, 1.25rem);
+  --fontsize-45: clamp(2.6875rem, 2.3643rem + 0.5051vw, 2.8125rem);
+  --fontsize-30: clamp(1.75rem, 1.4268rem + 0.5051vw, 1.875rem); /* 30-26 */
+  --fontsize-40: clamp(2.1875rem, 1.3794rem + 1.2626vw, 2.5rem); /*40-35*/
+  --text-marginw: 30.6rem;
+  --h2-marginw: 9.4rem;
+  --padding: 3%;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  position: fixed;
+  top: 5px;
+  left: 0;
+  z-index: 10;
+  background: transparent;
+}
+
+.logo {
+  font-size: var(--fontsize-20);
+  font-weight: bold;
+  padding-top: 20px;
+  margin-top: 15px;
+}
+.logo h1 {
+  color: var(--tertiary-color);
+  font-family: var(--antic-font);
+  font-weight: 400;
+}
+.logo span {
+  font-family: var(--beau-font);
+  font-weight: 400;
+}
+
+/* Burger icon */
+.burger {
+  width: 30px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  z-index: 30;
+}
+
+.burger div {
+  width: 100%;
+  height: 4px;
+  background: black;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Drawer (slides from top) */
+.drawer {
+  position: absolute; /* now relative to navbar */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* full-screen overlay */
+  background-color: var(--primary-bgcolor);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease-in-out;
+  z-index: 20;
+  padding: 0px 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.drawer.open {
+  opacity: 1;
+  pointer-events: auto; /* slides just below navbar */
+}
+.drawer-main {
+  display: flex;
+  justify-content: center;
+  gap: 64%;
+  align-items: center;
+  margin-top: 19vh;
+}
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.drawer a {
+  text-decoration: none;
+  color: var(--tertiary-color);
+  font-size: var(--fontsize-40);
+  transition: color 0.3s ease;
+  font-family: var(--beau-font);
+  font-weight: 400;
+}
+
+.drawer a:hover {
+  color: var(--hover-color);
+  text-decoration: underline;
+}
+.drawer-image img {
+  width: clamp(100px, 25vw, 300px);
+}
+.drawer p {
+  text-align: center;
+  font-size: var(--fontsize-30);
+  font-family: var(--beau-font);
+  font-weight: 400;
+  margin-bottom: 1%;
+}
+
+/* Animate burger into "X" */
+.burger.open div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+.burger.open div:nth-child(2) {
+  opacity: 0;
+}
+.burger.open div:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/*Top section */
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-left: 1.9rem;
+  overflow: hidden;
+}
+/*sidebar */
+.sidebar {
+  position: sticky;
+  top: 50px;
+  height: fit-content;
+}
+.forever {
+  margin-left: 20vw;
+  font-family: var(--beau-font);
+  font-weight: 400;
+  font-size: var(--fontsize-20);
+}
+.names {
+  font-size: var(--fontsize-20);
+  font-family: var(--antic-font);
+  font-weight: 400;
+  margin-top: 70px;
+}
+.side-image {
+  max-width: clamp(350px, 31vw, 450px);
+}
+/*side content */
+.main {
+  flex: 1;
+  margin-left: 1.25rem;
+  max-height: 100vh;
+  overflow-y: auto;
+  position: relative;
+}
+.main-1 {
+  max-width: 30vw; /*430px*/
+  position: absolute;
+  right: 1px;
+}
+.main-2 {
+  position: absolute;
+  left: 10vw;
+  max-width: 20vw; /*280px*/
+  top: 230px;
+}
+.main-3 {
+  position: absolute;
+  max-width: 18vw; /*250*/
+  right: 10vw;
+  top: 100%;
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+.main-4 {
+  position: absolute;
+  max-width: 18vw;
+  top: 110vh;
+  right: 30vw;
+}
+.main-5 {
+  position: absolute;
+  max-width: 18vw;
+  top: 190vh;
+  right: 5vw;
+}
+.main-6 {
+  position: absolute;
+  max-width: 18vw;
+  top: 180vh;
+  left: 150px;
+}
+.scroll {
+  font-family: var(--afacad-font);
+  font-size: var(--fontsize-18);
+}
+
+/*Traditional section */
+.traditional {
+  margin-top: 40px;
+  padding: var(--padding);
+}
+.traditional h2 {
+  font-family: var(--beau-font);
+  font-weight: 400;
+  font-size: var(--fontsize-45);
+  max-width: var(--h2-marginw);
+  text-align: center;
+}
+.traditional .trad-text-1 {
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-18);
+  max-width: var(--text-marginw);
+  margin-left: 45vw;
+}
+/*traditional images */
+.trad-image {
+  position: relative;
+  padding: 0px 8%;
+  transition: all 0.5s ease;
+}
+.trad-1 {
+  position: absolute;
+  width: 43vw;
+  height: 50vw;
+}
+.trad-2 {
+  position: absolute;
+  max-width: 30vw;
+  left: 45vw;
+  top: 10vw;
+}
+.traditional .trad-text-2 {
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-18);
+  max-width: var(--text-marginw);
+  margin-left: 23vw;
+  margin-top: 56%;
+  transition: all 0.5s ease;
+}
+
+/*Ceremony section */
+.ceremony {
+  margin-top: 40px;
+  padding: var(--padding);
+}
+.ceremony h2 {
+  font-family: var(--beau-font);
+  font-weight: 400;
+  font-size: var(--fontsize-45);
+  max-width: var(--h2-marginw);
+  text-align: center;
+}
+.ceremony .ceremony-text-1 {
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-18);
+  max-width: var(--text-marginw);
+}
+/*Ceremony images */
+.ceremony-image {
+  display: flex;
+  justify-content: space-between;
+}
+.cere-1 {
+  max-width: 41vw;
+  margin-top: 75px;
+}
+.cere-2 {
+  max-width: 47vw;
+}
+.ceremony .ceremony-text-2 {
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-18);
+  margin-left: 30vw;
+  max-width: 30.6rem;
+  margin-top: 10px;
+  transition: all 0.5s ease;
+}
+
+/*Reception Section */
+.reception {
+  margin-top: 40px;
+  padding: 3%;
+}
+.reception h2 {
+  font-family: var(--beau-font);
+  font-weight: 400;
+  font-size: var(--fontsize-45);
+  max-width: var(--h2-marginw);
+  text-align: center;
+}
+.reception .reception-text {
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-18);
+  max-width: var(--text-marginw);
+  margin-left: 15vw;
+}
+/*Reception images */
+.reception-image {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.recep-1,
+.recep-3 {
+  max-width: 27vw;
+}
+.recep-2 {
+  max-width: 34vw;
+}
+
+/*Moment section */
+.moments {
+  margin-top: 40px;
+  padding: var(--padding);
+}
+.moment-section {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+.moments h2 {
+  font-family: var(--beau-font);
+  font-weight: 400;
+  font-size: var(--fontsize-45);
+}
+/*Moment section 1 */
+.msection-1 {
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-18);
+}
+.mom-1 {
+  max-width: 26vw;
+}
+.moment-text-1 {
+  width: 26vw;
+  margin-top: 10px;
+  transition: all 0.5s ease;
+}
+/*Moment section 2 */
+.msection-2 {
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-18);
+}
+
+.moment-text-2 {
+  width: 26vw;
+  margin-bottom: 10px;
+  transition: all 0.5s ease;
+}
+.mom-2 {
+  max-width: 26vw;
+}
+/*Moment section 3 */
+.msection-3 img {
+  max-width: 28vw;
+}
+
+/*Testimonial section */
+.testimonial {
+  position: relative;
+  border-top: 1px solid var(--tertiary-color);
+  border-bottom: 1px solid var(--tertiary-color);
+  margin-top: 60px;
+}
+/*Testimonial slides */
+.mySlides {
+  display: none;
+  padding: 6%;
+  text-align: center;
+  transition: all 0.5s ease;
+}
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -30px;
+  padding: 1rem;
+  color: var(--tertiary-color);
+  font-weight: bold;
+  font-size: var(--fontsize-20);
+  user-select: none;
+  border-radius: 0 3px 3px 0;
+  margin-left: 3.75rem;
+}
+.next {
+  position: absolute;
+  right: 3.75rem;
+  border-radius: 3px 0 0 3px;
+}
+.prev:hover,
+.next:hover {
+  background-color: var(--hover-color);
+  color: var(--primary-color);
+  border-radius: 50%;
+  padding: 1.25rem;
+}
+q {
+  font-size: var(--fontsize-20);
+  font-family: var(--beau-font);
+  font-weight: 400;
+}
+.author {
+  font-size: var(--fontsize-20);
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+/*Breadcrumb */
+.breadcrumb {
+  color: var(--tertiary-color);
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-20);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 60px;
+  margin-left: 40px;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+}
+.breadcrumb:hover {
+  color: var(--hover-color);
+}
+
+/*Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 3.8rem 3.12rem;
+  align-items: center;
+}
+.footer-1 {
+  display: inline-flex;
+  gap: 0.5rem;
+}
+.footer a {
+  text-decoration: none;
+  color: var(--tertiary-color);
+  transition: all 0.5s ease;
+  font-size: 36px;
+}
+.footer a:hover {
+  transform: scale(1.5);
+}
+.footer-2 {
+  text-align: center;
+  font-size: var(--fontsize-45);
+  font-family: var(--antic-font);
+  font-weight: 400;
+}
+.footer-2 span {
+  font-family: var(--serious-font);
+  font-weight: 400;
+  color: var(--red-color);
+}
+.footer-3 a {
+  text-align: end;
+  font-size: 36px;
+}
+
+.mail-icon {
+  width: 36px;
+  height: 36px;
+  transition: all 0.5s ease;
+}
+.mail-icon:hover {
+  transform: scale(1.5);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --fontsize-20: clamp(1rem, 0.623rem + 0.7843vw, 1.125rem);
+    --fontsize-18: clamp(0.875rem, 0.498rem + 0.7843vw, 1rem);
+    --fontsize-45: clamp(2.1875rem, 1.2451rem + 1.9608vw, 2.5rem); /* 40-35 */
+    --fontsize-40: clamp(1.875rem, 0.9326rem + 1.9608vw, 2.1875rem); /*35-30*/
+    --fontsize-30: clamp(1.375rem, 0.6198rem + 2.0942vw, 1.625rem); /* 26-22 */
+  }
+  .drawer-links {
+    gap: 2.5rem;
+    transition: all 0.5s ease;
+  }
+  .drawer-main {
+    gap: 56%;
+    margin-top: 24vh;
+    transition: all 0.5s ease;
+  }
+  /* Burger icon */
+  .burger {
+    width: 26px;
+    height: 18px;
+    transition: all 0.5s ease;
+  }
+  .side-image {
+    max-width: clamp(250px, 34vw, 350px);
+    transition: all 0.5s ease;
+  }
+  /*side content */
+  .main {
+    margin-left: 0.8rem;
+  }
+  .main-2 {
+    left: clamp(50px, 9vw, 100px);
+  }
+  .main-4 {
+    right: 37vw;
+    transition: all 0.5s ease;
+  }
+  .main-5 {
+    top: 160vh;
+  }
+  .main-6 {
+    top: 150vh;
+    left: 16vw;
+  }
+  /*Footer */
+  .footer {
+    margin-top: 10px;
+  }
+  .footer-1 {
+    gap: 0.5rem;
+  }
+  .footer a {
+    font-size: 32px;
+  }
+  .mail-icon {
+    width: 32px;
+    height: 32px;
+    transition: all 0.5s ease;
+  }
+}
+/* media query 768 */
+@media (max-width: 768px) {
+  :root {
+    --fontsize-20: clamp(0.875rem, 0.4974rem + 1.0471vw, 1rem);
+    --fontsize-45: clamp(2.1875rem, 1.2451rem + 1.9608vw, 2.5rem); /* 40-35 */
+    --fontsize-40: clamp(1.5625rem, 0.6185rem + 2.6178vw, 1.875rem); /*30-25*/
+    --fontsize-30: clamp(1.25rem, 0.8724rem + 1.0471vw, 1.375rem); /* 22-20 */
+  }
+  .drawer-main {
+    margin-top: 27vh;
+    transition: all 0.5s ease;
+  }
+  .side-image {
+    max-width: clamp(200px, 33vw, 250px);
+    transition: all 0.5s ease;
+  }
+  .main-2 {
+    top: clamp(250px, 10vh, 230px);
+    transition: all 0.5s ease;
+  }
+  .main-3 {
+    right: 7vw;
+    transition: all 0.5s ease;
+  }
+  .main-4 {
+    top: 90vh;
+  }
+  .main-5 {
+    top: 131vh;
+    right: 3vw;
+  }
+  .main-6 {
+    top: 125vh;
+    left: 16vw;
+  }
+  .traditional .trad-text-1 {
+    margin-left: 40vw;
+  }
+  /*traditional images */
+  .trad-image {
+    margin-top: 10px;
+  }
+  .traditional .trad-text-2 {
+    margin-top: 58%;
+  }
+  /*Ceremony images */
+  .ceremony-image {
+    margin-top: 10px;
+    transition: all 0.5s ease;
+  }
+  .ceremony .ceremony-text-1 {
+    max-width: 70vw;
+  }
+  .ceremony .ceremony-text-2 {
+    margin-left: 30vw;
+    max-width: 50vw;
+    transition: all 0.5s ease;
+  }
+  .mom-1 {
+    max-width: 29vw;
+    transition: all 0.5s ease;
+  }
+  .moment-text-1 {
+    width: 29vw;
+    transition: all 0.5s ease;
+  }
+  /*Moment section 2 */
+  .moment-text-2 {
+    width: 29vw;
+    transition: all 0.5s ease;
+  }
+  .mom-2 {
+    max-width: 29vw;
+    transition: all 0.5s ease;
+  }
+  .prev,
+  .next {
+    margin-left: 2rem;
+    transition: all 0.5s ease;
+  }
+  .next {
+    right: 2rem;
+  }
+  /*Footer */
+  .footer {
+    padding: 3.8rem 2rem;
+    transition: all 0.5s ease;
+    align-items: center;
+    margin-top: 5px;
+  }
+  .footer-1 {
+    gap: 0.5rem;
+  }
+
+  .footer a {
+    transition: all 0.5s ease;
+    font-size: 26px;
+  }
+  .mail-icon {
+    width: 26px;
+    height: 28px;
+    transition: all 0.5s ease;
+  }
+}
+/* media query 576 */
+@media (max-width: 576px) {
+  :root {
+    --fontsize-18: clamp(0.625rem, 0.625rem + 0.3472vw, 0.75rem); /* 12-10 */
+    --fontsize-45: clamp(
+      1.75rem,
+      0.8327rem + 3.7634vw,
+      2.1875rem
+    ); /* 35-28, 390 */
+    --padding: 4%;
+  }
+  .drawer-main {
+    gap: 48%;
+    transition: all 0.5s ease;
+  }
+  .drawer p {
+    margin-bottom: 2%;
+  }
+  /* Burger icon */
+  .burger {
+    width: 23px;
+    height: 15px;
+    transition: all 0.5s ease;
+  }
+  .side-image {
+    max-width: clamp(150px, 30vw, 200px);
+    transition: all 0.5s ease;
+  }
+  .names {
+    max-width: 40vw;
+    transition: all 0.5s ease;
+  }
+  .main-2 {
+    top: 55%;
+    left: 10%;
+    transition: all 0.5s ease;
+  }
+  .main-4 {
+    top: 70vh;
+    right: 29vw;
+  }
+  .main-5 {
+    top: 105vh;
+    right: 3vw;
+  }
+  .main-6 {
+    top: 90vh;
+    left: 15vw;
+  }
+  .traditional .trad-text-1 {
+    margin-left: 30vw;
+    transition: all 0.5s ease;
+  }
+  /*traditional images */
+  .trad-image {
+    padding: 0px 7%;
+    transition: all 0.5s ease;
+  }
+  .traditional .trad-text-2 {
+    margin-left: 21vw;
+  }
+  .moment-section {
+    margin-top: 20px;
+    transition: all 0.5s ease;
+  }
+  .prev,
+  .next {
+    margin-left: 1rem;
+    transition: all 0.5s ease;
+  }
+  .next {
+    right: 1rem;
+  }
+  .footer a {
+    transition: all 0.5s ease;
+    font-size: 25px;
+  }
+  .mail-icon {
+    width: 25px;
+    height: 25px;
+    transition: all 0.5s ease;
+  }
+}

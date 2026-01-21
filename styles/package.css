@@ -1,0 +1,655 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fffefa;
+  padding-top: 60px;
+  overscroll-behavior: none;
+  cursor: none !important;
+}
+/* Hide system cursor */
+a,
+button {
+  cursor: none !important;
+}
+
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--tertiary-color);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hover-color);
+}
+/* Custom cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--red-color);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease,
+    background 0.2s ease;
+  z-index: 9999;
+  mix-blend-mode: normal; /* makes it visible on both light/dark backgrounds */
+}
+
+/* Hover state for clickable items */
+.custom-cursor.hover {
+  width: 30px;
+  height: 30px;
+  background: var(--hover-color);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+/*Font styles */
+.antic-didone-regular {
+  font-family: "Antic Didone", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.are-you-serious-regular {
+  font-family: "Are You Serious", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.beau-rivage-regular {
+  font-family: "Beau Rivage", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.afacad {
+  font-family: "Afacad", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+:root {
+  --primary-bgcolor: #fffefa;
+  --tertiary-color: black;
+  --primary-color: white;
+  --hover-color: #f39c12;
+  --red-color: #5c0909;
+  --antic-font: "Antic Didone", serif;
+  --serious-font: "Are You Serious", cursive;
+  --beau-font: "Beau Rivage", cursive;
+  --afacad-font: "Afacad", sans-serif;
+  --fontsize-30: clamp(1.625rem, 0.9785rem + 1.0101vw, 1.875rem); /* 30-26 */
+  --fontsize-18: clamp(1rem, 0.6768rem + 0.5051vw, 1.125rem);
+  --fontsize-20: clamp(1.125rem, 0.8018rem + 0.5051vw, 1.25rem);
+  --fontsize-28: clamp(1.625rem, 1.3018rem + 0.5051vw, 1.75rem); /* 28-26*/
+  --fontsize-45: clamp(2.6875rem, 2.3643rem + 0.5051vw, 2.8125rem);
+  --fontsize-50: clamp(3rem, 2.6768rem + 0.5051vw, 3.125rem); /* 50-48 */
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  position: fixed;
+  top: 5px;
+  left: 0;
+  z-index: 10;
+  background: transparent;
+}
+
+.logo {
+  font-size: var(--fontsize-20);
+  font-weight: bold;
+  padding-top: 20px;
+}
+.logo h1 {
+  color: var(--tertiary-color);
+  font-family: var(--antic-font);
+  font-weight: 400;
+}
+.logo span {
+  font-family: var(--beau-font);
+  font-weight: 400;
+}
+
+/* Burger icon */
+.burger {
+  width: 30px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  z-index: 30;
+}
+
+.burger div {
+  width: 100%;
+  height: 4px;
+  background: black;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+/* Drawer (slides from top) */
+.drawer {
+  position: absolute; /* now relative to navbar */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* full-screen overlay */
+  background-color: #fffefa;
+  padding: 40px 5%;
+  display: none;
+  transition: all 0.4s ease-in-out;
+  z-index: 20;
+}
+.drawer-main {
+  margin-top: 10vh;
+  margin-left: 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.drawer-image img {
+  width: clamp(100px, 25vw, 300px);
+}
+.drawer.open {
+  display: block;
+  pointer-events: auto; /* slides just below navbar */
+}
+
+.drawer-links a {
+  text-decoration: none;
+  color: var(--tertiary-color);
+  font-size: var(--fontsize-30);
+  transition: color 0.3s ease;
+  font-family: var(--afacad-font);
+  font-weight: 400;
+  opacity: 1;
+  width: fit-content;
+  transition: all 0.4s ease-in-out;
+}
+.drawer-links a:hover {
+  color: var(--hover-color);
+  text-decoration: underline;
+}
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.drawer p {
+  text-align: center;
+  font-size: var(--fontsize-20);
+  font-family: var(--beau-font);
+  font-weight: 400;
+  margin-top: 5%;
+  color: var(--hover-color);
+}
+/* Animate burger into "X" */
+.burger.open div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+.burger.open div:nth-child(2) {
+  opacity: 0;
+}
+.burger.open div:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/*Package section */
+.package-section h2 {
+  text-align: center;
+  font-family: var(--antic-font);
+  font-weight: 400;
+  font-size: var(--fontsize-50);
+  margin-top: 30px;
+}
+.package-section span {
+  font-family: var(--beau-font);
+  font-weight: 400;
+  font-size: var(--fontsize-50);
+}
+
+/*Package tabs */
+.package-tabs {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 3.12rem;
+}
+.package-tabs button {
+  font-family: var(--beau-font);
+  font-weight: 400;
+  font-size: 1.44rem; /* 23px */
+  padding: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--tertiary-color);
+}
+.tab.active {
+  color: var(--hover-color);
+  border-bottom: 1px solid var(--hover-color);
+}
+
+/*Package content */
+.package-content {
+  margin: 3.12rem 5rem;
+}
+.package {
+  display: none;
+  gap: 4.5rem;
+  text-align: left;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.package.active {
+  display: flex;
+  justify-content: center;
+  opacity: 1;
+  transform: translateY(0);
+}
+/*Package image */
+img {
+  max-width: clamp(400px, 35vw, 500px);
+}
+/*Package info */
+.package-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+}
+.package-info h3 {
+  font-size: var(--fontsize-28);
+  font-family: var(--beau-font);
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.package-info .desc {
+  font-family: var(--antic-font);
+  font-weight: 400;
+  font-size: var(--fontsize-18);
+  line-height: 1.2;
+}
+.list-box {
+  margin-top: 2.8rem;
+}
+.list {
+  display: flex;
+  margin-bottom: 10px;
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-18);
+  display: flex;
+  justify-content: space-between;
+}
+.list-p {
+  text-align: end;
+}
+.package-info .price {
+  margin-top: 30px;
+  margin-bottom: 2.5rem;
+  font-size: 18px;
+  font-family: var(--beau-font);
+  font-weight: 400;
+}
+.package-info a {
+  font-size: var(--fontsize-18);
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  text-decoration: none;
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  padding: 0.4rem 1.9rem;
+  width: fit-content;
+}
+.package-info a:hover {
+  color: var(--hover-color);
+}
+
+/*FAQ */
+.faq {
+  padding: 5rem;
+  display: flex;
+  gap: 6.9rem;
+}
+.faq-text h1 {
+  margin-bottom: 10px;
+  font-size: 35px;
+}
+.question {
+  width: 600px;
+}
+.accordion {
+  color: var(--tertiary-color);
+  cursor: pointer;
+  padding: 0.9rem;
+  width: 100%;
+  outline: none;
+  font-size: var(--fontsize-18);
+  height: 70px;
+  font-family: var(--antic-font);
+  font-weight: 400;
+  border: none;
+  display: inline-flex;
+  justify-content: space-between;
+  transition: all 0.3s;
+  background-color: var(--primary-bgcolor);
+}
+
+.active,
+.accordion:hover {
+  background-color: var(--primary-bgcolor);
+  color: var(--tertiary-color);
+}
+
+.panel {
+  padding: 1.12rem;
+  display: none;
+  background-color: var(--primary-bgcolor);
+  color: var(--tertiary-color);
+  overflow: hidden;
+  height: 70px;
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/*FAQ Image */
+.faq-image {
+  position: relative;
+}
+.image-1 {
+  width: 17vw;
+}
+
+/*Breadcrumb */
+.breadcrumb {
+  color: var(--tertiary-color);
+  font-family: var(--afacad-font);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: var(--fontsize-20);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 60px;
+  margin-left: 40px;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+}
+.breadcrumb:hover {
+  color: var(--hover-color);
+}
+
+/*Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 3.8rem 3.12rem;
+  align-items: center;
+}
+.footer-1 {
+  display: inline-flex;
+  gap: 0.5rem;
+}
+.footer a {
+  text-decoration: none;
+  color: var(--tertiary-color);
+  transition: all 0.5s ease;
+  font-size: 36px;
+}
+.footer a:hover {
+  transform: scale(1.5);
+}
+.footer-2 {
+  text-align: center;
+  font-size: var(--fontsize-45);
+  font-family: var(--antic-font);
+  font-weight: 400;
+}
+.footer-2 span {
+  font-family: var(--serious-font);
+  font-weight: 400;
+  color: var(--red-color);
+}
+.footer-3 a {
+  text-align: end;
+  font-size: 36px;
+}
+
+.mail-icon {
+  width: 36px;
+  height: 36px;
+  transition: all 0.5s ease;
+}
+.mail-icon:hover {
+  transform: scale(1.5);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --fontsize-20: clamp(1rem, 0.623rem + 0.7843vw, 1.125rem);
+    --fontsize-28: clamp(1.5rem, 1.123rem + 0.7843vw, 1.625rem); /* 26-24*/
+    --fontsize-18: clamp(0.875rem, 0.498rem + 0.7843vw, 1rem);
+    --fontsize-45: clamp(2.1875rem, 1.2451rem + 1.9608vw, 2.5rem); /* 40-35 */
+    --fontsize-50: clamp(2.75rem, 1.9961rem + 1.5686vw, 3rem); /* 48-44 */
+    --fontsize-30: clamp(1.375rem, 0.6198rem + 2.0942vw, 1.625rem); /* 26-22 */
+  }
+  /* Burger icon */
+  .burger {
+    width: 28px;
+    height: 20px;
+  }
+  /*Package content */
+  .package-content {
+    margin: 3.12rem 2rem;
+  }
+  .package {
+    gap: 3rem;
+  }
+  /*Package image */
+  img {
+    max-width: clamp(300px, 35vw, 400px);
+    transition: all 0.5s ease;
+  }
+  .list-box {
+    margin-top: 1rem;
+    transition: all 0.5s ease;
+  }
+  .package-info .price {
+    margin-top: 20px;
+    margin-bottom: 1rem;
+    font-size: var(--fontsize-18);
+  }
+  /*FAQ */
+  .faq {
+    padding: 3rem;
+    gap: 4rem;
+    transition: all 0.5s ease;
+  }
+  .faq-text h1 {
+    font-size: 30px;
+  }
+  .question {
+    width: 500px;
+    transition: all 0.5s ease;
+  }
+  /*FAQ Image */
+  .faq-image {
+    margin-top: 20px;
+    transition: all 0.5s ease;
+  }
+  /*Footer */
+  .footer {
+    margin-top: 10px;
+  }
+  .footer-1 {
+    gap: 0.5rem;
+  }
+  .footer a {
+    font-size: 32px;
+  }
+  .mail-icon {
+    width: 32px;
+    height: 32px;
+    transition: all 0.5s ease;
+  }
+}
+/* media query 768 */
+@media (max-width: 768px) {
+  :root {
+    --fontsize-20: clamp(0.875rem, 0.4974rem + 1.0471vw, 1rem);
+    --fontsize-50: clamp(2.25rem, 0.75rem + 4.1667vw, 2.75rem); /* 44-36 */
+    --fontsize-45: clamp(2.1875rem, 1.2451rem + 1.9608vw, 2.5rem); /* 40-35 */
+    --fontsize-28: clamp(1.375rem, 1rem + 1.0417vw, 1.5rem); /* 24-22*/
+    --fontsize-30: clamp(1.25rem, 0.8724rem + 1.0471vw, 1.375rem); /* 22-20 */
+  }
+  /* Burger icon */
+  .burger {
+    width: 26px;
+    height: 18px;
+    transition: all 0.5s ease;
+  }
+  .package.active {
+    flex-direction: column;
+    transition: all 0.5s ease;
+  }
+  /*Package content */
+  .package-content {
+    margin: 3.12rem 4rem;
+  }
+  .package-image {
+    display: flex;
+    justify-content: center;
+  }
+  /*Package image */
+  img {
+    max-width: clamp(400px, 70vw, 550px);
+    transition: all 0.5s ease;
+  }
+  .list-box {
+    margin-top: 2rem;
+    transition: all 0.5s ease;
+  }
+  .package-info .price {
+    margin-bottom: 1.5rem;
+  }
+  /*FAQ */
+  .faq {
+    padding: 3rem;
+    gap: 2rem;
+    transition: all 0.5s ease;
+    flex-direction: column;
+  }
+  .faq-text h1 {
+    font-size: 30px;
+    transition: all 0.5s ease;
+  }
+  .question {
+    width: 450px;
+    transition: all 0.5s ease;
+  }
+  /*FAQ Image */
+  .faq-image {
+    display: flex;
+    transition: all 0.5s ease;
+    justify-content: end;
+  }
+  /*Footer */
+  .footer {
+    padding: 3.8rem 2rem;
+    transition: all 0.5s ease;
+    align-items: center;
+    margin-top: 5px;
+  }
+  .footer-1 {
+    gap: 0.5rem;
+  }
+
+  .footer a {
+    transition: all 0.5s ease;
+    font-size: 28px;
+  }
+  .mail-icon {
+    width: 28px;
+    height: 28px;
+    transition: all 0.5s ease;
+  }
+}
+
+/* media query 576 */
+@media (max-width: 576px) {
+  :root {
+    --fontsize-50: clamp(2rem, 1.4758rem + 2.1505vw, 2.25rem); /* 36-32 */
+    --fontsize-20: clamp(0.625rem, 0.625rem + 0.3472vw, 0.75rem); /* 14-12 */
+    --fontsize-18: clamp(0.625rem, 0.625rem + 0.3472vw, 0.75rem); /* 12-10 */
+    --fontsize-28: clamp(1.25rem, 0.9879rem + 1.0753vw, 1.375rem); /* 22-20*/
+    --fontsize-45: clamp(1.875rem, 1.875rem + 0.8681vw, 2.1875rem); /* 35-30 */
+    --fontsize-30: clamp(1rem, 1rem + 0.6944vw, 1.25rem); /* 20-16 */
+  }
+  /* Burger icon */
+  .burger {
+    width: 24px;
+    height: 16px;
+    transition: all 0.5s ease;
+  }
+  /*Package tabs */
+  .package-tabs {
+    gap: 3rem;
+  }
+  .package-tabs button {
+    font-size: 1rem; /* 23px */
+  }
+  /*Package content */
+  .package-content {
+    margin: 2.5rem 2.5rem;
+  }
+  /*Package image */
+  img {
+    max-width: 67vw;
+    transition: all 0.5s ease;
+  }
+  /*FAQ */
+  .faq {
+    padding: 2rem;
+    transition: all 0.5s ease;
+  }
+  .question {
+    width: 330px;
+    transition: all 0.5s ease;
+  }
+  .panel {
+    padding: 1.12rem;
+    height: 60px;
+    font-size: var(--fontsize-18);
+  }
+  .footer a {
+    transition: all 0.5s ease;
+    font-size: 25px;
+  }
+  .mail-icon {
+    width: 25px;
+    height: 25px;
+    transition: all 0.5s ease;
+  }
+}

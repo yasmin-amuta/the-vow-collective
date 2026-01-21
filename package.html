@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Style sheets-->
+    <link rel="stylesheet" href="styles/package.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--font styles-->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Antic+Didone&family=Are+You+Serious&family=Beau+Rivage&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Package</title>
+
+     <!--lenis-->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis"></script>
+</head>
+<body>
+<!--Navbar-->
+    <nav class="navbar">
+      <div class="logo">
+        <h1><span>P</span>ackage</h1>
+      </div>
+
+      <div class="burger" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <!-- Navbar dropdown now inside -->
+      <div class="drawer" id="drawer">
+        <div class="drawer-main">
+          <div class="drawer-links">
+            <a class="hover-target" href="portfolio.html">Portfolio.</a>
+            <a class="hover-target" href="experience.html">Experience.</a>
+            <a class="hover-target" href="package.html">Packages.</a>
+            <a class="hover-target" href="contact.html">Contact.</a>
+          </div>
+          <div class="drawer-image">
+            <img src="images/ -60.jpg" alt="" />
+          </div>
+        </div>
+        <p>capturing the start of forever</p>
+      </div>
+    </nav>
+
+  <!--Package Section-->
+  <section class="package-section">
+    <h2><span>C</span>hoose a Package</h2>
+
+    <!--package tabs-->
+    <div class="package-tabs">
+        <button class="tab active hover-target" data-target="essential">The Essential Beginnings</button>
+        <button class="tab hover-target" data-target="timeless">The Timeless Narrative</button>
+    </div>
+
+    <div class="package-content">
+        <!--Essential package-->
+        <div class="package active" id="essential">
+            <!--package image-->
+            <div class="package-image">
+                <img src="images/ -44.jpg" alt="">
+            </div>
+            <!--package info-->
+            <div class="package-info">
+                <h3>01. The Essential Beginnings</h3>
+                <p class="desc">This package is designed for couples planning a more intimate 
+                    celebration or those needing focused coverage of the main event.
+                    high quality without all the extras.</p>
+                <div class="list-box">
+                    <div class="list">
+                        <p class="list-title">Coverage Time:</p>
+                        <p class="list-p">8 Hours (Typically from getting ready through the first dance)</p>
+                    </div>
+                    <div class="list">
+                        <p class="list-title">Deliverables:</p>
+                        <p class="list-p">400+ Professionally Edited High-Resolution Digital Images</p>
+                    </div>
+                    <div class="list">
+                        <p class="list-title">Personnel:</p>
+                        <p class="list-p">Lead Photographer</p>
+                    </div>
+                    <div class="list">
+                        <p class="list-title">Rights:</p>
+                        <p class="list-p"> Personal Printing & Sharing Rights</p>
+                    </div>
+                    <div class="list">
+                        <p class="list-title">Delivery:</p>
+                        <p class="list-p">Online Gallery for Viewing, Sharing, and Downloading</p>
+                    </div>
+                    <div class="list">
+                        <p class="list-title">Ideal For:</p>
+                        <p class="list-p">Intimate weddings and shorter celebrations.</p>
+                    </div>
+                </div>
+                <p class="price">Starting at $3,000</p>
+                <a class="hover-target" href="contact.html">INQUIRE</a>
+            </div>
+        </div>
+
+        <!--Timeless package-->
+        <div class="package" id="timeless">
+            <!--package image-->
+            <div class="package-image">
+                <img src="images/-59.jpeg" alt="">
+            </div>
+            <!--package info-->
+            <div class="package-info">
+                <h3>02. The Timesless Narrative</h3>
+                <p class="desc">This package is for couples who want every moment of their day 
+                    captured, from rehearsal to the grand exit. It includes luxury items and 
+                    extended coverage.</p>
+                <div class="list-box">
+                    <div class="list">
+                        <p class="list-title">Coverage Time:</p>
+                        <p class="list-p">12 Hours (Full day: rehearsal, getting ready, and all reception events)</p>
+                    </div>
+                    <div class="list">
+                        <p class="list-title">Deliverables:</p>
+                        <p class="list-p">700+ Professionally Edited High-Resolution Digital Images</p>
+                    </div>
+                    <div class="list">
+                        <p class="list-title">Personnel:</p>
+                        <p class="list-p">Two Photographers (Ensures angles and moments are captured)</p>
+                    </div>
+                    <div class="list">
+                        <p class="list-title">Luxury Album:</p>
+                        <p class="list-p">Custom-Designed, Linen-Bound 10x10 Heirloom Album (20 pages)</p>
+                    </div>
+                    <div class="list">
+                        <p class="list-title">Rights:</p>
+                        <p class="list-p">Full Printing & Sharing Rights</p>
+                    </div>
+                    <div class="list">
+                        <p class="list-title">Bonus:</p>
+                        <p class="list-p">Complimentary Engagement Session (Value $500)</p>
+                    </div>
+                </div>
+                <p class="price">Starting at $6,500</p>
+                <a href="#">INQUIRE</a>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!--Faq-->
+  <section class="faq">
+    <div class="faq-text">
+        <h1>FAQs</h1>
+        <div class="question">
+            <hr>
+            <button class="accordion">How far in advance to book? <span>&#10010</span> </button>
+            <div class="panel">
+                <p>Brief description here. Chartreuse hammock before they sold out mlkshk, freegan coloring book gastropub lorem.</p>
+            </div>
+            <hr>
+            <button class="accordion">Do you travel? <span>&#10010</span></button>
+            <div class="panel">
+                <p>Brief description here. Chartreuse hammock before they sold out mlkshk, freegan coloring book gastropub lorem.</p>
+            </div>
+            <hr>
+            <button class="accordion">Are the images edited? <span>&#10010</span></button>
+            <div class="panel">
+                <p>Brief description here. Chartreuse hammock before they sold out mlkshk, freegan coloring book gastropub lorem.</p>
+            </div>
+            <hr>
+            <button class="accordion">How long to receive our final gallery? <span>&#10010</span></button>
+            <div class="panel">
+                <p>Brief description here. Chartreuse hammock before they sold out mlkshk, freegan coloring book gastropub lorem.</p>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <!--Faq Image-->
+    <div class="faq-image">
+        <img class="image-1" src="images/Adama Indimi & Malik Ado-Ibrahim's Wedding was A Rich Fusion of the Kanuri, Chadian & Ebira Cultures-2.jpg" alt="">
+    </div>
+  </section>
+
+  <!--Breadcrumb-->
+    <a href="main.html" class="breadcrumb hover-target">
+        <span style="font-size: 20px">&#8598;</span> Back to Home</a>
+
+  <!--Footer-->
+    <div class="footer">
+      <!--Youtube and Instagram Icons-->
+      <div class="footer-1">
+        <a href=""><i class="fa fa-instagram"></i></a>
+        <a href=""><i class="fa fa-youtube-play"></i></a>
+      </div>
+      <div class="footer-2">
+        <p><span>T</span>he Vow Collective</p>
+      </div>
+      <div class="footer-3">
+        <a href="contact.html">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width=""
+            height=""
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#000000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-mail-icon mail-icon lucide-mail"
+          >
+            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="custom-cursor"></div>
+    
+    <!--Javascript link-->
+    <script src="javascript/gsap.min.js"></script>
+    <script src="javascript/ScrollTrigger.min.js"></script>
+    <script src="javascript/TextPlugin.min.js"></script>
+    <script src="javascript/SplitText.min.js"></script>
+    <script src="javascript/package.js"></script>
+</body>
+</html>
