@@ -32,4 +32,4 @@ Built with performance and responsiveness in mind while maintaining a high-end, 
 
 ## Live Demo
 
-https://your-live-link-here
+https://yasmin-amuta.github.io/the-vow-collective/
