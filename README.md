@@ -1,20 +1,3 @@
-# The Vow
-
-The Vow Collective is a Wedding Photographer Portfolio Website ensuring every glance and celebration is
-preserved with emotional depth.
-
-## Tech Stack
-
-- HTML
-- CSS
-- JavaScript
-
-## Features
-
-- Responsive design
-- Accessible navigation
-- Interactive UI elements
-
 # The Vow Collective — Wedding Photography Portfolio
 
 A refined, animation-led portfolio website for The Vow Collective, a wedding photography studio.
